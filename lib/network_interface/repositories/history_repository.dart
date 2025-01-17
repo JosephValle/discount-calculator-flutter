@@ -6,6 +6,7 @@ import "base_history_repository.dart";
 class HistoryRepository implements BaseHistoryRepository {
   final DatabaseApiClient _databaseApiClient = DatabaseApiClient();
 
+  @override
   Future<void> initializeDatabase() async {
     await _databaseApiClient.initializeDatabase();
   }

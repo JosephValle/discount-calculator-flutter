@@ -1,6 +1,6 @@
 import "package:bloc/bloc.dart";
 import "package:discount_calculator/models/discount_model.dart";
-import "package:meta/meta.dart";
+import "package:flutter/cupertino.dart";
 
 import "../../network_interface/repositories/history_repository.dart";
 
@@ -27,7 +27,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         discounts.addAll(newDiscounts);
         emit(HistoryLoaded(discounts: discounts));
       } catch (e) {
-        print(e);
+        debugPrint("Error: $e");
         emit(HistoryError(error: e.toString(), discounts: discounts));
       }
     });

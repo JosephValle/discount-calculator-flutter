@@ -26,7 +26,6 @@ class DatabaseApiClient {
   // getAll
   Future<List<DiscountModel>> getAll() async {
     final List<Map<String, dynamic>> maps = await _db.query("discounts");
-    print(maps);
     return maps.map((map) => DiscountModel.fromMap(map)).toList();
   }
 

@@ -1,17 +1,12 @@
 import "package:discount_calculator/user_interface/home_screen.dart";
-import "package:firebase_core/firebase_core.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:sqflite/sqflite.dart";
-import "package:sqflite_common_ffi/sqflite_ffi.dart";
 
 import "logical_interface/bloc/history_bloc.dart";
 import "network_interface/repositories/history_repository.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // sqfliteFfiInit(); // Initializes ffi for sqflite
-  // databaseFactory = databaseFactoryFfi; // Set the global database factory
   runApp(const MyApp());
 }
 
@@ -36,7 +31,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: "Discount Calculator",
+          title: "Disc Calc",
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true,
