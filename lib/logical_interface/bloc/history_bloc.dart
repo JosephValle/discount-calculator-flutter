@@ -10,8 +10,6 @@ part "history_state.dart";
 
 class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   final HistoryRepository _historyRepository;
-  bool hasMore = true;
-  int page = 0;
   List<DiscountModel> discounts = [];
 
   HistoryBloc({
@@ -19,14 +17,26 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   })  : _historyRepository = historyRepository,
         super(const HistoryInitial(discounts: [])) {
     on<GetHistory>((event, emit) async {
-      // TODO: implement event handler
+      try {
+        if(event.reset) {
+          discounts = [];
+        }
+        emit(HistoryLoading(discounts: discounts));
+        await _historyRepository.initializeDatabase();
+        final newDiscounts = await _historyRepository.getHistories();
+        discounts.addAll(newDiscounts);
+        emit(HistoryLoaded(discounts: discounts));
+      } catch (e) {
+        print(e);
+        emit(HistoryError(error: e.toString(), discounts: discounts));
+      }
     });
 
     on<AddHistory>((event, emit) async {
       try {
         emit(HistoryLoading(discounts: discounts));
         discounts.add(event.discountModel);
-        // TODO: implement event handler
+        await _historyRepository.addHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
       } catch (e) {
         emit(HistoryError(error: e.toString(), discounts: discounts));
@@ -36,8 +46,10 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
     on<DeleteHistory>((event, emit) async {
       try {
         emit(HistoryLoading(discounts: discounts));
-        discounts.removeWhere((element) => element.id == event.discountModel.id);
-        // TODO: implement event handler
+        discounts
+            .removeWhere((element) => element.id == event.discountModel.id);
+
+        await _historyRepository.deleteHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
       } catch (e) {
         emit(HistoryError(error: e.toString(), discounts: discounts));
@@ -47,9 +59,10 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
     on<UpdateHistory>((event, emit) async {
       try {
         emit(HistoryLoading(discounts: discounts));
-        final index = discounts.indexWhere((element) => element.id == event.discountModel.id);
+        final index = discounts
+            .indexWhere((element) => element.id == event.discountModel.id);
         discounts[index] = event.discountModel;
-        print("Updated discount: ${event.discountModel.toString()}");
+        await _historyRepository.updateHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
       } catch (e) {
         emit(HistoryError(error: e.toString(), discounts: discounts));

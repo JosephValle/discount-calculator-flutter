@@ -6,6 +6,10 @@ import "base_history_repository.dart";
 class HistoryRepository implements BaseHistoryRepository {
   final DatabaseApiClient _databaseApiClient = DatabaseApiClient();
 
+  Future<void> initializeDatabase() async {
+    await _databaseApiClient.initializeDatabase();
+  }
+
   @override
   Future<void> addHistory(DiscountModel discount) async {
     await _databaseApiClient.add(discount);
@@ -17,7 +21,7 @@ class HistoryRepository implements BaseHistoryRepository {
   }
 
   @override
-  Future<List<DiscountModel>> getHistories(page) {
+  Future<List<DiscountModel>> getHistories() {
     return _databaseApiClient.getAll();
   }
 

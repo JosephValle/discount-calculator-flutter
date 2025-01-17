@@ -19,6 +19,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
   bool percentage = true;
 
   void _calculate() {
+    FocusScope.of(context).unfocus();
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -68,6 +69,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                 prefix: Text(percentage ? "" : "\$"),
                 border: const OutlineInputBorder(),
               ),
+              onFieldSubmitted: (_) => _calculate(),
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
@@ -81,7 +83,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
             const Gap(8),
             Row(
               children: [
-                const Text("Percentage"),
+                const Text("Amount"),
                 const Gap(8),
                 Switch(
                   value: percentage,
@@ -92,7 +94,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                   },
                 ),
                 const Gap(8),
-                const Text("Amount"),
+                const Text("Percentage"),
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () => _calculate(),

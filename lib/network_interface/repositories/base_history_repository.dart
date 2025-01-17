@@ -1,7 +1,9 @@
 import "package:discount_calculator/models/discount_model.dart";
 
 abstract class BaseHistoryRepository {
-  Future<List<DiscountModel>> getHistories(page);
+  Future<void> initializeDatabase();
+
+  Future<List<DiscountModel>> getHistories();
 
   Future<void> addHistory(DiscountModel discount);
 

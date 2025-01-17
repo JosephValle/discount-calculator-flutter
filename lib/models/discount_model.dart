@@ -1,5 +1,4 @@
 class DiscountModel {
-  // Storage Items
   final String id;
   final double priceBeforeDiscount;
   final double discount;
@@ -7,7 +6,6 @@ class DiscountModel {
   final DateTime date;
   final String description;
 
-  // Getters
   double get savings =>
       fixedDiscount ? discount : priceBeforeDiscount * (discount / 100);
 
@@ -27,8 +25,8 @@ class DiscountModel {
       "id": id,
       "priceBeforeDiscount": priceBeforeDiscount,
       "discount": discount,
-      "fixedDiscount": fixedDiscount,
-      "date": date,
+      "fixedDiscount": fixedDiscount ? 1 : 0, // Convert bool to int
+      "date": date.toIso8601String(), // Convert DateTime to String
       "description": description,
     };
   }
@@ -38,8 +36,8 @@ class DiscountModel {
       id: map["id"] as String,
       priceBeforeDiscount: map["priceBeforeDiscount"] as double,
       discount: map["discount"] as double,
-      fixedDiscount: map["fixedDiscount"] as bool,
-      date: map["date"] as DateTime,
+      fixedDiscount: (map["fixedDiscount"] as int) == 1, // Convert int to bool
+      date: DateTime.parse(map["date"] as String), // Parse String to DateTime
       description: map["description"] as String,
     );
   }

@@ -4,12 +4,10 @@ part of "history_bloc.dart";
 sealed class HistoryEvent {}
 
 class GetHistory extends HistoryEvent {
-  final int limit;
-  final int offset;
+  final bool reset;
 
   GetHistory({
-    required this.limit,
-    required this.offset,
+    this.reset = false,
   });
 }
 
