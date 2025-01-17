@@ -23,15 +23,37 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
     });
 
     on<AddHistory>((event, emit) async {
-      // TODO: implement event handler
+      try {
+        emit(HistoryLoading(discounts: discounts));
+        discounts.add(event.discountModel);
+        // TODO: implement event handler
+        emit(HistoryLoaded(discounts: discounts));
+      } catch (e) {
+        emit(HistoryError(error: e.toString(), discounts: discounts));
+      }
     });
 
     on<DeleteHistory>((event, emit) async {
-      // TODO: implement event handler
+      try {
+        emit(HistoryLoading(discounts: discounts));
+        discounts.removeWhere((element) => element.id == event.discountModel.id);
+        // TODO: implement event handler
+        emit(HistoryLoaded(discounts: discounts));
+      } catch (e) {
+        emit(HistoryError(error: e.toString(), discounts: discounts));
+      }
     });
 
     on<UpdateHistory>((event, emit) async {
-      // TODO: implement event handler
+      try {
+        emit(HistoryLoading(discounts: discounts));
+        final index = discounts.indexWhere((element) => element.id == event.discountModel.id);
+        discounts[index] = event.discountModel;
+        print("Updated discount: ${event.discountModel.toString()}");
+        emit(HistoryLoaded(discounts: discounts));
+      } catch (e) {
+        emit(HistoryError(error: e.toString(), discounts: discounts));
+      }
     });
   }
 }
