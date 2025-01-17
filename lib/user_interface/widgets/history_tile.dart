@@ -22,9 +22,9 @@ class HistoryTile extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (context) => showDialog(
-                context: context,
-                builder: (context) =>
-                    DescriptionDialog(discountModel: discount),),
+              context: context,
+              builder: (context) => DescriptionDialog(discountModel: discount),
+            ),
             icon: CupertinoIcons.pencil,
             label: "Edit",
             borderRadius: BorderRadius.circular(8.0),
@@ -74,37 +74,39 @@ class HistoryTile extends StatelessWidget {
                 ),
                 const Divider(),
                 InfoWidget(
-                    title: "Price Before Discount",
-                    data:
-                        "\$ ${discount.priceBeforeDiscount.toStringAsFixed(2)}",),
-                InfoWidget(
+                  title: "Price Before Discount",
+                  data: "\$ ${discount.priceBeforeDiscount.toStringAsFixed(2)}",
+                ),
+                if (!discount.fixedDiscount)
+                  InfoWidget(
                     title:
                         "Discount ${discount.fixedDiscount ? "Amount" : "Percentage"}",
                     data: discount.fixedDiscount
                         ? "\$ ${discount.discount.toStringAsFixed(2)}"
-                        : "${discount.discount.toStringAsFixed(2)}%",),
+                        : "${discount.discount.toStringAsFixed(2)}%",
+                  ),
                 InfoWidget(
-                    title: "Saved",
-                    data: "\$ ${discount.savings.toStringAsFixed(2)}",),
+                  title: "Saved",
+                  data: "\$ ${discount.savings.toStringAsFixed(2)}",
+                ),
                 InfoWidget(
-                    title: "Discounted Price",
-                    data: "\$${discount.discountedPrice.toStringAsFixed(2)}",),
-                if (discount.description.isNotEmpty)
-                  const Divider(),
+                  title: "Discounted Price",
+                  data: "\$${discount.discountedPrice.toStringAsFixed(2)}",
+                ),
+                if (discount.description.isNotEmpty) const Divider(),
                 if (discount.description.isNotEmpty)
                   RichText(
                     text: TextSpan(
                       text: "Description: ",
-                      style:  const TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
                         color: Colors.black,
-
                       ),
                       children: [
                         TextSpan(
                           text: discount.description,
-                          style:  const TextStyle(
+                          style: const TextStyle(
                             fontSize: 16.0,
                             color: Colors.black,
                             fontWeight: FontWeight.normal,

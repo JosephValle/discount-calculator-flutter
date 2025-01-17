@@ -64,7 +64,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
             TextFormField(
               controller: _discountController,
               decoration: InputDecoration(
-                labelText: "Discount",
+                labelText: "Discount ${percentage ? "Percentage" : "Amount"}",
                 suffixText: percentage ? "%" : null,
                 prefix: Text(percentage ? "" : "\$"),
                 border: const OutlineInputBorder(),
