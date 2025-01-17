@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text("Discount Calculator"),
           ),
           body: GestureDetector(
-            onTap: (){
+            onTap: () {
               // unfocus text field
               FocusScope.of(context).unfocus();
             },

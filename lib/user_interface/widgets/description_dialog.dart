@@ -5,8 +5,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:gap/gap.dart";
 
 class DescriptionDialog extends StatelessWidget {
-  final TextEditingController _descriptionController = TextEditingController(
-  );
+  final TextEditingController _descriptionController = TextEditingController();
   final DiscountModel discountModel;
 
   DescriptionDialog({
@@ -15,12 +14,13 @@ class DescriptionDialog extends StatelessWidget {
   });
 
   void _updateDescription(BuildContext context) {
-    context.read<HistoryBloc>().add(UpdateHistory(
-          discountModel: discountModel.copyWith(
-            description: _descriptionController.text.trim(),
+    context.read<HistoryBloc>().add(
+          UpdateHistory(
+            discountModel: discountModel.copyWith(
+              description: _descriptionController.text.trim(),
+            ),
           ),
-        ),
-    );
+        );
     Navigator.of(context).pop();
   }
 

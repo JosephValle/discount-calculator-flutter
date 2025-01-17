@@ -18,7 +18,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         super(const HistoryInitial(discounts: [])) {
     on<GetHistory>((event, emit) async {
       try {
-        if(event.reset) {
+        if (event.reset) {
           discounts = [];
         }
         emit(HistoryLoading(discounts: discounts));
