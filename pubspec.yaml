@@ -1,0 +1,33 @@
+name: discount_calculator
+description: "A discount Calculator with history"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  bloc: ^9.0.0
+  cupertino_icons: ^1.0.8
+  firebase_analytics: ^11.0.0
+  firebase_auth: ^5.0.0
+  firebase_core: ^3.0.0
+  firebase_crashlytics: ^4.0.0
+  firebase_messaging: ^15.0.0
+  firebase_storage: ^12.0.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
+  intl: ^0.20.1
+  meta: ^1.15.0
+
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
