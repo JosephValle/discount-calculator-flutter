@@ -77,17 +77,9 @@ class HistoryTile extends StatelessWidget {
                   title: "Price Before Discount",
                   data: "\$ ${discount.priceBeforeDiscount.toStringAsFixed(2)}",
                 ),
-                if (!discount.fixedDiscount)
-                  InfoWidget(
-                    title:
-                        "Discount ${discount.fixedDiscount ? "Amount" : "Percentage"}",
-                    data: discount.fixedDiscount
-                        ? "\$ ${discount.discount.toStringAsFixed(2)}"
-                        : "${discount.discount.toStringAsFixed(2)}%",
-                  ),
                 InfoWidget(
-                  title: "Saved",
-                  data: "\$ ${discount.savings.toStringAsFixed(2)}",
+                  title: "Discount Percentage",
+                  data: "${discount.discountPercentage}%",
                 ),
                 InfoWidget(
                   title: "Discounted Price",

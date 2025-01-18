@@ -16,7 +16,6 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _discountController = TextEditingController();
-  bool percentage = true;
 
   void _calculate() {
     FocusScope.of(context).unfocus();
@@ -26,11 +25,11 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
     final DiscountModel discountModel = DiscountModel(
       id: const Uuid().v4(),
       priceBeforeDiscount: double.parse(_priceController.text),
-      discount: double.parse(_discountController.text),
-      fixedDiscount: !percentage,
       date: DateTime.now(),
       description: "",
+      discountedPrice: double.parse(_discountController.text),
     );
+
     context.read<HistoryBloc>().add(AddHistory(discountModel: discountModel));
   }
 
@@ -41,6 +40,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
       child: Form(
         key: _formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
@@ -63,11 +63,10 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
             const Gap(8),
             TextFormField(
               controller: _discountController,
-              decoration: InputDecoration(
-                labelText: "Discount ${percentage ? "Percentage" : "Amount"}",
-                suffixText: percentage ? "%" : null,
-                prefix: Text(percentage ? "" : "\$"),
-                border: const OutlineInputBorder(),
+              decoration: const InputDecoration(
+                labelText: "Price after discount",
+                prefix: Text("\$"),
+                border: OutlineInputBorder(),
               ),
               onFieldSubmitted: (_) => _calculate(),
               keyboardType: const TextInputType.numberWithOptions(
@@ -80,27 +79,9 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                 return null;
               },
             ),
-            const Gap(8),
-            Row(
-              children: [
-                const Text("Amount"),
-                const Gap(8),
-                Switch(
-                  value: percentage,
-                  onChanged: (val) {
-                    setState(() {
-                      percentage = val;
-                    });
-                  },
-                ),
-                const Gap(8),
-                const Text("Percentage"),
-                const Spacer(),
-                ElevatedButton(
-                  onPressed: () => _calculate(),
-                  child: const Text("Calculate"),
-                ),
-              ],
+            ElevatedButton(
+              onPressed: () => _calculate(),
+              child: const Text("Calculate"),
             ),
           ],
         ),

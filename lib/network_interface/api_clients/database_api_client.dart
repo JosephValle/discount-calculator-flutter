@@ -13,8 +13,7 @@ class DatabaseApiClient {
           CREATE TABLE discounts (
             id TEXT PRIMARY KEY,
             priceBeforeDiscount REAL,
-            discount REAL,
-            fixedDiscount INTEGER,
+            discountedPrice REAL,
             date TEXT,
             description TEXT
           )

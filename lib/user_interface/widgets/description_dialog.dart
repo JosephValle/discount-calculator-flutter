@@ -22,6 +22,7 @@ class DescriptionDialog extends StatelessWidget {
           ),
         );
     Navigator.of(context).pop();
+    FocusScope.of(context).unfocus();
   }
 
   @override
