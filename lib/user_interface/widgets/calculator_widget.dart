@@ -29,7 +29,6 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
       description: "",
       discountedPrice: double.parse(_discountController.text),
     );
-
     context.read<HistoryBloc>().add(AddHistory(discountModel: discountModel));
   }
 
@@ -46,8 +45,8 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
             TextFormField(
               controller: _priceController,
               decoration: const InputDecoration(
-                labelText: "Price",
-                prefix: Text("\$"),
+                labelText: "Price Before Discount",
+                prefix: Text("\$ "),
                 border: OutlineInputBorder(),
               ),
               keyboardType: const TextInputType.numberWithOptions(
@@ -55,17 +54,17 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
               ),
               validator: (_) {
                 if (double.tryParse(_priceController.text) == null) {
-                  return "Invalid price";
+                  return "Invalid Price!";
                 }
                 return null;
               },
             ),
-            const Gap(8),
+            const Gap(16),
             TextFormField(
               controller: _discountController,
               decoration: const InputDecoration(
-                labelText: "Price after discount",
-                prefix: Text("\$"),
+                labelText: "Price After Discount",
+                prefix: Text("\$ "),
                 border: OutlineInputBorder(),
               ),
               onFieldSubmitted: (_) => _calculate(),
@@ -74,11 +73,12 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
               ),
               validator: (_) {
                 if (double.tryParse(_discountController.text) == null) {
-                  return "Invalid discount";
+                  return "Invalid Price!";
                 }
                 return null;
               },
             ),
+            const Gap(16),
             ElevatedButton(
               onPressed: () => _calculate(),
               child: const Text("Calculate"),

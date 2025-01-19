@@ -19,7 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Discount Calculator"),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            title: Text(
+              "Discount Calculator",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
           ),
           body: GestureDetector(
             onTap: () {
