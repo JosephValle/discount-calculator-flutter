@@ -1,13 +1,14 @@
-import "package:discount_calculator/logical_interface/bloc/history_bloc.dart";
-import "package:flutter/material.dart";
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-import "history_tile.dart";
+import '../../logical_interface/bloc/history_bloc.dart';
+import 'history_tile.dart';
 
 class HistoryWidget extends StatelessWidget {
+  HistoryWidget({required this.state, super.key});
+
   final HistoryState state;
   final ScrollController _scrollController = ScrollController();
-
-  HistoryWidget({required this.state, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class HistoryWidget extends StatelessWidget {
     return Column(
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            "History",
+            'History',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -43,5 +44,11 @@ class HistoryWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<HistoryState>('state', state));
   }
 }

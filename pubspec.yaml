@@ -1,33 +1,28 @@
 name: discount_calculator
-description: "A discount Calculator with history"
+description: "A Discount Calculator with History"
 publish_to: 'none'
 
-version: 1.0.2
+version: 1.1.0
 
 environment:
   sdk: ^3.6.0
 
 dependencies:
-  bloc: ^9.0.0
-  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  flutter_bloc: ^9.0.0
-  flutter_slidable: ^3.1.2
-  gap: ^3.0.1
-  intl: ^0.20.1
-  meta: ^1.15.0
-  path_provider: ^2.1.5
-  sqflite: ^2.4.1
-  sqflite_common_ffi: ^2.3.4+4
-  uuid: ^4.5.1
-
+  flutter_bloc: ^9.0.0 # state management
+  flutter_slidable: ^3.1.2 # for sliding widgets
+  gap: ^3.0.1 # for responsive design
+  intl: ^0.20.1 # for date formatting
+  sqflite: ^2.4.1 # for local storage
+  uuid: ^4.5.1 # for unique id generation
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.3
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  lint_hard: ^5.0.0
 
 flutter:
 
@@ -36,12 +31,10 @@ flutter:
   assets:
     - assets/discount.png
 
-
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/discount.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
     image_path: "assets/discount.png"

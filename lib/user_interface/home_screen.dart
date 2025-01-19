@@ -1,8 +1,9 @@
-import "package:discount_calculator/logical_interface/bloc/history_bloc.dart";
-import "package:discount_calculator/user_interface/widgets/calculator_widget.dart";
-import "package:discount_calculator/user_interface/widgets/history_widget.dart";
-import "package:flutter/material.dart";
-import "package:flutter_bloc/flutter_bloc.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../logical_interface/bloc/history_bloc.dart';
+import 'widgets/calculator_widget.dart';
+import 'widgets/history_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,15 +14,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<HistoryBloc, HistoryState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
+  Widget build(BuildContext context) => BlocConsumer<HistoryBloc, HistoryState>(
+        listener: (context, state) {},
+        builder: (context, state) => Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.primary,
             title: Text(
-              "Discount Calculator",
+              'Discount Calculator',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.onPrimary,
@@ -45,8 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
 }

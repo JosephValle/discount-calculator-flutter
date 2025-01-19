@@ -1,7 +1,7 @@
-import "package:discount_calculator/models/discount_model.dart";
-import "package:discount_calculator/network_interface/api_clients/database_api_client.dart";
+import '../../models/discount_model.dart';
+import '../api_clients/database_api_client.dart';
 
-import "base_history_repository.dart";
+import 'base_history_repository.dart';
 
 class HistoryRepository implements BaseHistoryRepository {
   final DatabaseApiClient _databaseApiClient = DatabaseApiClient();
@@ -22,12 +22,9 @@ class HistoryRepository implements BaseHistoryRepository {
   }
 
   @override
-  Future<List<DiscountModel>> getHistories() {
-    return _databaseApiClient.getAll();
-  }
+  Future<List<DiscountModel>> getHistories() => _databaseApiClient.getAll();
 
   @override
-  Future<void> updateHistory(DiscountModel discount) {
-    return _databaseApiClient.update(discount);
-  }
+  Future<void> updateHistory(DiscountModel discount) =>
+      _databaseApiClient.update(discount);
 }

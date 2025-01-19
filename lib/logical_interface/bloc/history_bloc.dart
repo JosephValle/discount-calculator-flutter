@@ -1,17 +1,14 @@
-import "package:bloc/bloc.dart";
-import "package:discount_calculator/models/discount_model.dart";
-import "package:flutter/cupertino.dart";
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import "../../network_interface/repositories/history_repository.dart";
+import '../../models/discount_model.dart';
+import '../../network_interface/repositories/history_repository.dart';
 
-part "history_event.dart";
+part 'history_event.dart';
 
-part "history_state.dart";
+part 'history_state.dart';
 
 class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
-  final HistoryRepository _historyRepository;
-  List<DiscountModel> discounts = [];
-
   HistoryBloc({
     required HistoryRepository historyRepository,
   })  : _historyRepository = historyRepository,
@@ -26,8 +23,8 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         final newDiscounts = await _historyRepository.getHistories();
         discounts.addAll(newDiscounts);
         emit(HistoryLoaded(discounts: discounts));
-      } catch (e) {
-        debugPrint("Error: $e");
+      } on Exception catch (e) {
+        debugPrint('Error: $e');
         emit(HistoryError(error: e.toString(), discounts: discounts));
       }
     });
@@ -38,7 +35,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         discounts.add(event.discountModel);
         await _historyRepository.addHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
-      } catch (e) {
+      } on Exception catch (e) {
         emit(HistoryError(error: e.toString(), discounts: discounts));
       }
     });
@@ -51,7 +48,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
 
         await _historyRepository.deleteHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
-      } catch (e) {
+      } on Exception catch (e) {
         emit(HistoryError(error: e.toString(), discounts: discounts));
       }
     });
@@ -64,9 +61,12 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         discounts[index] = event.discountModel;
         await _historyRepository.updateHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
-      } catch (e) {
+      } on Exception catch (e) {
         emit(HistoryError(error: e.toString(), discounts: discounts));
       }
     });
   }
+
+  final HistoryRepository _historyRepository;
+  List<DiscountModel> discounts = [];
 }

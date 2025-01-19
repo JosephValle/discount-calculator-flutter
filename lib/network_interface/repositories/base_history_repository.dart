@@ -1,4 +1,4 @@
-import "package:discount_calculator/models/discount_model.dart";
+import '../../models/discount_model.dart';
 
 abstract class BaseHistoryRepository {
   Future<void> initializeDatabase();

@@ -1,17 +1,18 @@
-import "package:discount_calculator/logical_interface/bloc/history_bloc.dart";
-import "package:discount_calculator/models/discount_model.dart";
-import "package:flutter/material.dart";
-import "package:flutter_bloc/flutter_bloc.dart";
-import "package:gap/gap.dart";
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+
+import '../../logical_interface/bloc/history_bloc.dart';
+import '../../models/discount_model.dart';
 
 class DescriptionDialog extends StatelessWidget {
-  final TextEditingController _descriptionController = TextEditingController();
-  final DiscountModel discountModel;
-
   DescriptionDialog({
     required this.discountModel,
     super.key,
   });
+  final TextEditingController _descriptionController = TextEditingController();
+  final DiscountModel discountModel;
 
   void _updateDescription(BuildContext context) {
     context.read<HistoryBloc>().add(
@@ -30,14 +31,14 @@ class DescriptionDialog extends StatelessWidget {
     _descriptionController.text = discountModel.description;
     return Dialog(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
               controller: _descriptionController,
               decoration: const InputDecoration(
-                labelText: "Description",
+                labelText: 'Description',
                 border: OutlineInputBorder(),
               ),
               maxLines: 10,
@@ -45,17 +46,17 @@ class DescriptionDialog extends StatelessWidget {
               keyboardType: TextInputType.text,
               onFieldSubmitted: (_) => _updateDescription(context),
             ),
-            const Gap(16.0),
+            const Gap(16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text("Cancel"),
+                  child: const Text('Cancel'),
                 ),
                 ElevatedButton(
                   onPressed: () => _updateDescription(context),
-                  child: const Text("Save"),
+                  child: const Text('Save'),
                 ),
               ],
             ),
@@ -63,5 +64,12 @@ class DescriptionDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+        DiagnosticsProperty<DiscountModel>('discountModel', discountModel));
   }
 }

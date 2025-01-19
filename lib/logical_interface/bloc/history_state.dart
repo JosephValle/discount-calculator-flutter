@@ -1,12 +1,11 @@
-part of "history_bloc.dart";
+part of 'history_bloc.dart';
 
 @immutable
 sealed class HistoryState {
-  final List<DiscountModel> discounts;
-
   const HistoryState({
     required this.discounts,
   });
+  final List<DiscountModel> discounts;
 }
 
 final class HistoryInitial extends HistoryState {
@@ -22,7 +21,6 @@ final class HistoryLoaded extends HistoryState {
 }
 
 final class HistoryError extends HistoryState {
-  final String error;
-
   const HistoryError({required this.error, required super.discounts});
+  final String error;
 }

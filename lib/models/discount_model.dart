@@ -1,4 +1,20 @@
 class DiscountModel {
+  DiscountModel({
+    required this.id,
+    required this.priceBeforeDiscount,
+    required this.date,
+    required this.description,
+    required this.discountedPrice,
+  });
+
+  // from map
+  factory DiscountModel.fromMap(Map<String, dynamic> map) => DiscountModel(
+        id: map['id'] as String,
+        priceBeforeDiscount: map['priceBeforeDiscount'] as double,
+        discountedPrice: map['discountedPrice'] as double,
+        date: DateTime.parse(map['date'] as String),
+        description: map['description'] as String,
+      );
   final String id;
   final double priceBeforeDiscount;
   final double discountedPrice;
@@ -10,35 +26,14 @@ class DiscountModel {
 
   double get amountSaved => priceBeforeDiscount - discountedPrice;
 
-  DiscountModel({
-    required this.id,
-    required this.priceBeforeDiscount,
-    required this.date,
-    required this.description,
-    required this.discountedPrice,
-  });
-
   // to map
-  Map<String, dynamic> toMap() {
-    return {
-      "id": id,
-      "priceBeforeDiscount": priceBeforeDiscount,
-      "discountedPrice": discountedPrice,
-      "date": date.toIso8601String(),
-      "description": description,
-    };
-  }
-
-  // from map
-  factory DiscountModel.fromMap(Map<String, dynamic> map) {
-    return DiscountModel(
-      id: map["id"],
-      priceBeforeDiscount: map["priceBeforeDiscount"],
-      discountedPrice: map["discountedPrice"],
-      date: DateTime.parse(map["date"]),
-      description: map["description"],
-    );
-  }
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'priceBeforeDiscount': priceBeforeDiscount,
+        'discountedPrice': discountedPrice,
+        'date': date.toIso8601String(),
+        'description': description,
+      };
 
   // copy with
   DiscountModel copyWith({
@@ -47,18 +42,12 @@ class DiscountModel {
     double? discountedPrice,
     DateTime? date,
     String? description,
-  }) {
-    return DiscountModel(
-      id: id ?? this.id,
-      priceBeforeDiscount: priceBeforeDiscount ?? this.priceBeforeDiscount,
-      discountedPrice: discountedPrice ?? this.discountedPrice,
-      date: date ?? this.date,
-      description: description ?? this.description,
-    );
-  }
-
-  @override
-  String toString() {
-    return "DiscountModel(id: $id, priceBeforeDiscount: $priceBeforeDiscount, discountedPrice: $discountedPrice, date: $date, description: $description)";
-  }
+  }) =>
+      DiscountModel(
+        id: id ?? this.id,
+        priceBeforeDiscount: priceBeforeDiscount ?? this.priceBeforeDiscount,
+        discountedPrice: discountedPrice ?? this.discountedPrice,
+        date: date ?? this.date,
+        description: description ?? this.description,
+      );
 }

@@ -1,36 +1,32 @@
-part of "history_bloc.dart";
+part of 'history_bloc.dart';
 
 @immutable
 sealed class HistoryEvent {}
 
 class GetHistory extends HistoryEvent {
-  final bool reset;
-
   GetHistory({
     this.reset = false,
   });
+  final bool reset;
 }
 
 class AddHistory extends HistoryEvent {
-  final DiscountModel discountModel;
-
   AddHistory({
     required this.discountModel,
   });
+  final DiscountModel discountModel;
 }
 
 class DeleteHistory extends HistoryEvent {
-  final DiscountModel discountModel;
-
   DeleteHistory({
     required this.discountModel,
   });
+  final DiscountModel discountModel;
 }
 
 class UpdateHistory extends HistoryEvent {
-  final DiscountModel discountModel;
-
   UpdateHistory({
     required this.discountModel,
   });
+  final DiscountModel discountModel;
 }
