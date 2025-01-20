@@ -2,7 +2,7 @@ name: discount_calculator
 description: "A Discount Calculator with History"
 publish_to: 'none'
 
-version: 1.1.0
+version: 1.1.1
 
 environment:
   sdk: ^3.6.0
