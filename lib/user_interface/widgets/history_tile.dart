@@ -12,6 +12,7 @@ import 'info_widget.dart';
 
 class HistoryTile extends StatelessWidget {
   const HistoryTile({required this.discount, super.key});
+
   final DiscountModel discount;
 
   @override
@@ -84,7 +85,11 @@ class HistoryTile extends StatelessWidget {
                   ),
                   InfoWidget(
                     title: 'Discounted Price',
-                    data: '\$${discount.discountedPrice.toStringAsFixed(2)}',
+                    data: '\$ ${discount.discountedPrice.toStringAsFixed(2)}',
+                  ),
+                  InfoWidget(
+                    title: 'Total Savings',
+                    data: '\$ ${discount.amountSaved.toStringAsFixed(2)}',
                   ),
                   if (discount.description.isNotEmpty) const Divider(),
                   if (discount.description.isNotEmpty)
