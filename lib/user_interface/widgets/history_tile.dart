@@ -84,12 +84,12 @@ class HistoryTile extends StatelessWidget {
                     data: '${discount.discountPercentage}%',
                   ),
                   InfoWidget(
-                    title: 'Discounted Price',
-                    data: '\$ ${discount.discountedPrice.toStringAsFixed(2)}',
-                  ),
-                  InfoWidget(
                     title: 'Total Savings',
                     data: '\$ ${discount.amountSaved.toStringAsFixed(2)}',
+                  ),
+                  InfoWidget(
+                    title: 'Discounted Price',
+                    data: '\$ ${discount.discountedPrice.toStringAsFixed(2)}',
                   ),
                   if (discount.description.isNotEmpty) const Divider(),
                   if (discount.description.isNotEmpty)
