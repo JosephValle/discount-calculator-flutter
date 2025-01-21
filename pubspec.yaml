@@ -2,13 +2,14 @@ name: discount_calculator
 description: "A Discount Calculator with History"
 publish_to: 'none'
 
-version: 1.2.1
+version: 1.2.2
 
 environment:
   sdk: ^3.6.0
 
 dependencies:
-  flutter:
+  cupertino_icons: ^1.0.8 # for iOS style icons
+  flutter: # flutter sdk
     sdk: flutter
   flutter_bloc: ^9.0.0 # state management
   flutter_slidable: ^3.1.2 # for sliding widgets
