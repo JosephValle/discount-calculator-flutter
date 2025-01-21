@@ -20,7 +20,8 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         }
         emit(HistoryLoading(discounts: discounts));
         await _historyRepository.initializeDatabase();
-        final newDiscounts = await _historyRepository.getHistories();
+        final newDiscounts = await _historyRepository.getHistories()
+          ..reversed;
         discounts.addAll(newDiscounts);
         emit(HistoryLoaded(discounts: discounts));
       } on Exception catch (e) {
@@ -32,7 +33,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
     on<AddHistory>((event, emit) async {
       try {
         emit(HistoryLoading(discounts: discounts));
-        discounts.add(event.discountModel);
+        discounts.insert(0, event.discountModel);
         await _historyRepository.addHistory(event.discountModel);
         emit(HistoryLoaded(discounts: discounts));
       } on Exception catch (e) {
