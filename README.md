@@ -20,5 +20,5 @@ flutter run
 
 ## Notes
 
-- The app uses the `bloc` package for state management
+- The app uses the `flutter_bloc` package for state management
 - For local storage, the app uses the `sqflite` package
