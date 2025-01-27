@@ -1,16 +1,24 @@
 # discount_calculator
 
-A new Flutter project.
+Quick app to calculate discounts
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Run the app with the following command:
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Enter the original price of the item
+2. Enter the discounted price
+3. App will store the discount percentage and the amount saved
+4. Add notes to the transaction
+5. Delete transactions
+
+## Notes
+
+- The app uses the `bloc` package for state management
+- For local storage, the app uses the `sqflite` package
