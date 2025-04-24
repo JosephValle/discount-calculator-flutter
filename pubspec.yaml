@@ -2,7 +2,7 @@ name: discount_calculator
 description: "A Discount Calculator with History"
 publish_to: 'none'
 
-version: 1.2.2
+version: 1.2.3
 
 environment:
   sdk: ^3.6.0
@@ -12,7 +12,7 @@ dependencies:
   flutter: # flutter sdk
     sdk: flutter
   flutter_bloc: ^9.0.0 # state management
-  flutter_slidable: ^3.1.2 # for sliding widgets
+  flutter_slidable: ^4.0.0 # for sliding widgets
   gap: ^3.0.1 # for responsive design
   intl: ^0.20.1 # for date formatting
   sqflite: ^2.4.1 # for local storage
@@ -23,7 +23,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0 # for linting
   flutter_test: # for testing
     sdk: flutter
-  lint_hard: ^5.0.0 # for linting
+  lint_hard: ^6.0.0 # for linting
 
 flutter:
 
